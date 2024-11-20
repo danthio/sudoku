@@ -1363,7 +1363,7 @@ def main():
         
         cw=check_win()
 
-        cw=1
+        
         
 
         
