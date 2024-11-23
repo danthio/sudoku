@@ -1211,11 +1211,12 @@ def main():
                 can["bg"]="#ffffff"
                 col1_="#000000"
                 col2_="#ffffff"
-                col3_="#000000"
+                col3_="#555555"
                 col4_="#ffffff"
-                col5_="#000000"
+                col5_="#555555"
                 col6_="blue"
-                col7_="cyan"
+                col7_="skyblue"
+                col8_="#cccccc"
 
                 erase_=erase1
                 notes_=notes1
@@ -1226,14 +1227,15 @@ def main():
         elif theme==1:
                 exit_=exit1
                 theme_=theme1
-                can["bg"]="#222222"
+                can["bg"]="#111111"
                 col1_="#ffffff"
                 col2_="#000000"
-                col3_="#aaaaaa"
+                col3_="#bbbbbb"
                 col4_="#222222"
-                col5_="#b6ffbb"
-                col6_="cyan"
+                col5_="#bbbbbb"
+                col6_="skyblue"
                 col7_="blue"
+                col8_="#000000"
 
                 erase_=erase2
                 notes_=notes2                
@@ -1283,6 +1285,58 @@ def main():
 
 
 
+
+
+
+
+        if not sel==0:
+                
+
+
+                x,y=10,40
+
+                for x_ in range(9):
+
+                        can.create_rectangle(x+x_*sz,y+sel[1]*sz, x+x_*sz+sz,y+sel[1]*sz+sz, fill=col8_,outline=col8_)
+
+                x,y=10,40
+
+                for y_ in range(9):
+
+                        can.create_rectangle(x+sel[0]*sz,y+y_*sz, x+sel[0]*sz+sz,y+y_*sz+sz, fill=col8_,outline=col8_)
+
+
+
+
+                if 0<=sel[0]<=2:
+                        xx=0
+                elif 3<=sel[0]<=5:
+                        xx=3
+                elif 6<=sel[0]<=8:
+                        xx=6
+
+
+
+                if 0<=sel[1]<=2:
+                        yy=0
+                elif 3<=sel[1]<=5:
+                        yy=3
+                elif 6<=sel[1]<=8:
+                        yy=6
+
+
+                x,y=10,40
+
+
+
+                can.create_rectangle(x+xx*sz,y+yy*sz, x+xx*sz+sz*3,y+yy*sz+sz*3,fill=col8_,outline=col8_)
+
+
+                can.create_rectangle(10+sel[0]*sz,40+sel[1]*sz, 10+sel[0]*sz+sz,40+sel[1]*sz+sz,fill=col5_,outline=col5_)       
+
+
+
+
         xx=10+sz
         for x in range(9):
 
@@ -1314,20 +1368,6 @@ def main():
 
 
 
-
-        if not sel==0:
-                can.create_rectangle(10+sel[0]*sz,40+sel[1]*sz, 10+sel[0]*sz+sz,40+sel[1]*sz+sz,fill=col5_,outline=col5_)
-
-
-
-
-
-
-
-
-
-
-
         
 
 
@@ -1353,7 +1393,7 @@ def main():
                                         col=col2_
 
 
-                                can.create_text(10+x*sz+sz/2,40+y*sz+sz/2,text=str(viewable[y][x]),font=("FreeMono",14),fill=col)
+                                can.create_text(10+x*sz+sz/2,40+y*sz+sz/2,text=str(viewable[y][x]),font=("FreeMono",18),fill=col)
 
 
 
@@ -1385,7 +1425,7 @@ def main():
 
 
 
-                can.create_text(10+v[0]*sz+sz/2,40+v[1]*sz+sz/2,text=v[-1],fill=col, font=("FreeMono",14))
+                can.create_text(10+v[0]*sz+sz/2,40+v[1]*sz+sz/2,text=v[-1],fill=col, font=("FreeMono",18))
 
 
 
@@ -1399,7 +1439,7 @@ def main():
                 try:
                         v=ava_no.index(n)
 
-                        can.create_text(10+_*sz+sz/2,height-10-sz/2,text=str(n),font=("FreeMono",14),fill=col1_)
+                        can.create_text(10+_*sz+sz/2,height-10-sz/2,text=str(n),font=("FreeMono",18),fill=col1_)
                 except:
                         pass
 
@@ -1508,7 +1548,7 @@ def main():
                                         y+=vv/2+vv*2
 
 
-                                col="#999999"
+                                col=col1_
 
                                 if sel!=0:
 
@@ -1548,13 +1588,14 @@ def main():
         
         cw=check_win()
 
+
         
 
         if cw==1:
                 state=3
 
 
-                draw_transparent_bg(width,height,0,0,15,col1_,0.2,0)
+                #draw_transparent_bg(width,height,0,0,15,col1_,0.2,0)
 
 
 
@@ -1565,11 +1606,11 @@ def main():
 
 
 
-                draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.9,1)
+                draw_transparent_bg(xx,yy,x_,y_,15,col1_,0.9,1)
 
-                can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#666666")
-                can.create_text(x_+xx/2,y_+yy-20,text="Main Menu",fill="#ffffff",font=("FreeMono",13))
-                can.create_text(x_+xx/2,y_+(yy-40)/2,text="Completed!",fill="#ffffff",font=("FreeMono",13))
+                can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill=col2_)
+                can.create_text(x_+xx/2,y_+yy-20,text="Main Menu",fill=col2_,font=("FreeMono",13))
+                can.create_text(x_+xx/2,y_+(yy-40)/2,text="Completed!",fill=col2_,font=("FreeMono",13))
 
 
 
