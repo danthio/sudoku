@@ -259,6 +259,7 @@ def b1(e):
         global mistakes
         global write_st,write_st2,write_ar
         global ava_no
+        global err1
 
 
 
@@ -705,6 +706,8 @@ def b1(e):
                                                         my_solutions.append([sel[0],sel[1],val] )
 
                                                         if solution[sel[1]][sel[0]]!=val:
+
+                                                                err1=1
                                                                 mistakes+=1
                                                         else:
                                                                 sel2=val
@@ -1210,7 +1213,9 @@ def main():
                 col2_="#ffffff"
                 col3_="#000000"
                 col4_="#ffffff"
-                col5_="#555555"
+                col5_="#000000"
+                col6_="blue"
+                col7_="cyan"
 
                 erase_=erase1
                 notes_=notes1
@@ -1224,9 +1229,11 @@ def main():
                 can["bg"]="#222222"
                 col1_="#ffffff"
                 col2_="#000000"
-                col3_="#888888"
-                col4_="#111111"
+                col3_="#aaaaaa"
+                col4_="#222222"
                 col5_="#b6ffbb"
+                col6_="cyan"
+                col7_="blue"
 
                 erase_=erase2
                 notes_=notes2                
@@ -1272,6 +1279,36 @@ def main():
 
 
 
+
+
+
+
+        xx=10+sz
+        for x in range(9):
+
+                if x==2 or x==5:
+                        w=3
+                else:
+                        w=1
+
+                can.create_line(xx,40,xx,40+w_,fill=col3_,width=w)
+
+
+                xx+=sz
+
+
+        yy=40+sz
+        for x in range(9):
+
+                if x==2 or x==5:
+                        w=3
+                else:
+                        w=1
+
+                can.create_line(10,yy,10+w_,yy,fill=col3_,width=w)
+
+
+                yy+=sz
 
 
 
@@ -1326,12 +1363,12 @@ def main():
         for v in my_solutions:
 
 
-                col="blue"
+                col=col6_
 
 
 
-                if sel2==v[-1] and theme==0:
-                        col="cyan"
+                if sel2==v[-1]:
+                        col=col7_
 
 
                 if solution[v[1]][v[0]]!=v[-1]:
@@ -1494,33 +1531,6 @@ def main():
 
 
 
-        xx=10+sz
-        for x in range(9):
-
-                if x==2 or x==5:
-                        w=3
-                else:
-                        w=1
-
-                can.create_line(xx,40,xx,40+w_,fill=col3_,width=w)
-
-
-                xx+=sz
-
-
-        yy=40+sz
-        for x in range(9):
-
-                if x==2 or x==5:
-                        w=3
-                else:
-                        w=1
-
-                can.create_line(10,yy,10+w_,yy,fill=col3_,width=w)
-
-
-                yy+=sz
-
 
 
 
@@ -1538,14 +1548,13 @@ def main():
         
         cw=check_win()
 
-
         
 
         if cw==1:
                 state=3
 
 
-                draw_transparent_bg(width,height,0,0,15,col1_,0.5,0)
+                draw_transparent_bg(width,height,0,0,15,col1_,0.2,0)
 
 
 
@@ -1558,8 +1567,8 @@ def main():
 
                 draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.9,1)
 
-                can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#ffffff")
-                can.create_text(x_+xx/2,y_+yy-20,text="Quit",fill="red",font=("FreeMono",13))
+                can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#666666")
+                can.create_text(x_+xx/2,y_+yy-20,text="Main Menu",fill="#ffffff",font=("FreeMono",13))
                 can.create_text(x_+xx/2,y_+(yy-40)/2,text="Completed!",fill="#ffffff",font=("FreeMono",13))
 
 
@@ -1944,6 +1953,45 @@ def init_im():
         theme1=ImageTk.PhotoImage(file="data/dark.png")
         theme2=ImageTk.PhotoImage(file="data/light.png")
 
+err1=0
+err2=0
+err3=0
+def error():
+        global err1,err2,err3
+
+        if err1==1:
+                if err2==0:
+                        err3=str(root.geometry())
+
+                w,h=err3.split("+")[0].split("x")
+                x=err3.split("+")[1]
+                y=err3.split("+")[2]
+
+
+                d=10
+
+                if err2==0 or err2==2 or err2==4 or err2==6:
+                        x=int(x)-d
+                        err2+=1
+                elif err2==1 or err2==3 or err2==5 or err2==7:
+                        x=int(x)+d
+                        err2+=1
+
+                if err2==8:
+                        err1=0
+                        err2=0
+
+
+                root.geometry(w+"x"+h+"+"+str(x)+"+"+y)
+
+
+
+
+                        
+
+        root.after(30,error)
+
+
 cnt=0
 
 
@@ -2028,12 +2076,10 @@ except:
 
 
 
-
-
-
 init_im()
 
 intro()
+error()
 root.mainloop()
 
 
