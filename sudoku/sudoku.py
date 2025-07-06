@@ -1216,12 +1216,12 @@ def main():
                 can["bg"]="#ffffff"
                 col1_="#000000"
                 col2_="#ffffff"
-                col3_="#222222"
+                col3_="#000000"
                 col4_="#ffffff"
                 col5_="#000000"
                 col6_="blue"
                 col7_="skyblue"
-                col8_="#cccccc"
+                col8_="#aaaaaa"
 
                 erase_=erase1
                 notes_=notes1
@@ -1232,12 +1232,12 @@ def main():
         elif theme==1:
                 exit_=exit1
                 theme_=theme1
-                can["bg"]="#222222"
+                can["bg"]="#000000"
                 col1_="#ffffff"
                 col2_="#000000"
                 col3_="#ffffff"
-                col4_="#222222"
-                col5_="#b6ffbb"
+                col4_="#323232"
+                col5_="#38fca5"
                 col6_="skyblue"
                 col7_="blue"
                 col8_="#111111"
@@ -1339,35 +1339,6 @@ def main():
 
                 can.create_rectangle(10+sel[0]*sz,40+sel[1]*sz, 10+sel[0]*sz+sz,40+sel[1]*sz+sz,fill=col5_,outline=col5_)       
 
-
-
-
-        xx=10+sz
-        for x in range(9):
-
-                if x==2 or x==5:
-                        w=3
-                else:
-                        w=1
-
-                can.create_line(xx,39,xx,40+w_,fill=col3_,width=w)
-
-
-                xx+=sz
-
-
-        yy=40+sz
-        for x in range(9):
-
-                if x==2 or x==5:
-                        w=3
-                else:
-                        w=1
-
-                can.create_line(9,yy,10+w_,yy,fill=col3_,width=w)
-
-
-                yy+=sz
 
 
 
@@ -1590,6 +1561,35 @@ def main():
 
 
 
+
+
+
+        xx=10+sz
+        for x in range(9):
+
+                if x==2 or x==5:
+                        w=3
+                else:
+                        w=1
+
+                can.create_line(xx,39,xx,40+w_,fill=col3_,width=w)
+
+
+                xx+=sz
+
+
+        yy=40+sz
+        for x in range(9):
+
+                if x==2 or x==5:
+                        w=3
+                else:
+                        w=1
+
+                can.create_line(9,yy,10+w_,yy,fill=col3_,width=w)
+
+
+                yy+=sz
 
 
 
